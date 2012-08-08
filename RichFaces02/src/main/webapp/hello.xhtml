@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html">
- 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"> 
     <h:head>
         <title>JSF 2.0 Hello World</title>
     </h:head>
@@ -13,6 +13,11 @@
     	<h:form>
     	   <h:inputText value="#{helloBean.name}"></h:inputText>
     	   <h:commandButton value="Welcome Me" action="welcome"></h:commandButton>
+    	   <rich:tree id="tree" nodeType="#{node.type}" var="node" value="#{treeBean.nodes}" toggleType="client"
+    	                   selectionType="ajax" selectionChangeListener="#{treeBean.selectionChanged}"
+    	                   componentState="#{treeBean.dataState}" toggleListener="#{treeBean.toggleNodeListener}">
+    	         <rich:treeNode type="folder" expanded="#{node.expanded}">#{node.name}</rich:treeNode>
+    	   </rich:tree> 
     	</h:form>
     </h:body>
 </html>
