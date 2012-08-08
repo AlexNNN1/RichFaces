@@ -6,13 +6,11 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.swing.tree.TreeNode;
 import javax.annotation.PostConstruct; 
 
 import org.ajax4jsf.model.DataComponentState;
 import org.richfaces.component.UITree;
-import org.richfaces.component.UITreeNode;
 import org.richfaces.event.TreeSelectionChangeEvent;
 import org.richfaces.event.TreeToggleEvent;
 
