@@ -86,5 +86,4 @@ public class TreeBean implements Serializable {
 		this.dataState = dataState;
 	}
 	
-	
 }
