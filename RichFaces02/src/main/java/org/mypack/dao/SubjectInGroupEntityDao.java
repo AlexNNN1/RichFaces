@@ -12,7 +12,6 @@ public class SubjectInGroupEntityDao extends AbstractDao<SubjectInGroupEntity> {
 
 	@SuppressWarnings("unchecked")
 	public List<SubjectInGroupEntity> getSubjectsInGroup(final Integer groupId){
-		
 		return getHibernateTemplate().find(
 				"FROM SubjectInGroup s WHERE s.group.id = ?",
 				groupId
@@ -21,10 +20,10 @@ public class SubjectInGroupEntityDao extends AbstractDao<SubjectInGroupEntity> {
 
 	@SuppressWarnings("unchecked")
 	public List<SubjectInGroupEntity> getGroupsForSubject(final Integer subjectId){
-		
 		return getHibernateTemplate().find(
 				"FROM SubjectInGroup s WHERE s.item.id = ?",
 				subjectId
 				);
 	}
+	
 }
