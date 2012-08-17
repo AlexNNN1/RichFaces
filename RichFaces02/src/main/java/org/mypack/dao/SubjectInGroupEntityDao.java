@@ -3,7 +3,9 @@ package org.mypack.dao;
 import java.util.List;
 
 import org.mypack.model.SubjectInGroupEntity;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class SubjectInGroupEntityDao extends AbstractDao<SubjectInGroupEntity> {
 	
 	public SubjectInGroupEntityDao(){

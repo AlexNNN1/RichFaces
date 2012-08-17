@@ -5,8 +5,7 @@ import org.mypack.dao.SubjectInGroupEntityDao;
 import org.mypack.model.SubjectInGroupEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class SubjectInGroupsEntotyService extends AbstractService<SubjectInGroupEntity> {
-
+public class SubjectInGroupEntityService extends AbstractService<SubjectInGroupEntity> {
 	@Autowired
 	private SubjectInGroupEntityDao dao;
 	

@@ -23,6 +23,18 @@
          
   <!-- Dependencies -->
   <dependencies>
+  <!-- AspectJ -->
+	<dependency>
+		<groupId>aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+		<version>1.5.4</version>
+	</dependency>
+    <dependency>
+		<groupId>aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>1.5.4</version>
+	</dependency>   
+	<!--   junit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -116,7 +128,7 @@
 		<artifactId>hibernate-annotations</artifactId>
 		<version>3.4.0.GA</version>
 	</dependency>
-
+<!-- org.springframework -->
     <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
@@ -148,6 +160,7 @@
 		<artifactId>spring-webmvc</artifactId>
 		<version>3.0.3.RELEASE</version>
     </dependency>
+    
     <!-- net.sf.ehcache -->
     <dependency>
         <groupId>net.sf.ehcache</groupId>
