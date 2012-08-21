@@ -1,7 +1,6 @@
 package org.mypack.tests;
 
 import static org.junit.Assert.assertNotNull;
-
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.mypack.model.SubjectEntity;

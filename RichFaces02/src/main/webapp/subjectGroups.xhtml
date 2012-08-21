@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form>
+		<h:panelGrid rows="2" width="100%" height="200px" border="1"
+			rowClasses="subjects-tree, subjects-buttons-panel">
+			<rich:tree id="tree" nodeType="#{node.type}" var="node"
+				value="#{treeBean.nodes}" toggleType="client" selectionType="ajax"
+				selectionChangeListener="#{treeBean.selectionChanged}"
+				componentState="#{treeBean.dataState}"
+				toggleListener="#{treeBean.toggleNodeListener}">
+				<rich:treeNode type="folder" expanded="#{node.expanded}">
+    	         	#{node.name}
+    	         </rich:treeNode>
+			</rich:tree>
+			<h:panelGrid>
+				<rich:toolbar>
+
+					<rich:toolbarGroup location="left">
+						<h:commandButton value="New" action="home"></h:commandButton>
+						<h:commandButton value="Edit" action="home"></h:commandButton>
+						<h:commandButton value="Cut" action="home"></h:commandButton>
+						<h:commandButton value="Paste" action="home"></h:commandButton>
+					</rich:toolbarGroup>
+				</rich:toolbar>
+				<h:inputText value=""></h:inputText>
+				<h:commandButton value="Save" action="home"></h:commandButton>
+			</h:panelGrid>
+		</h:panelGrid>
+	</h:form>
+</ui:composition>

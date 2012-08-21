@@ -36,10 +36,7 @@ public class TreeBean implements Serializable {
 		root.getChilds().add(node1);
 		FolderNode node2 = new FolderNode();
 		node2.setName("Подразделение 2");
-		root.getChilds().add(node2);
-		
-		
-		
+		root.getChilds().add(node2);	
 	}
 
 	public void selectionChanged(TreeSelectionChangeEvent selectionChangeEvent) { 

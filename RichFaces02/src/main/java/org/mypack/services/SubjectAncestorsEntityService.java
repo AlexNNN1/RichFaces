@@ -4,7 +4,9 @@ import org.mypack.dao.AbstractDao;
 import org.mypack.dao.SubjectAncestorsEntityDao;
 import org.mypack.model.SubjectAncestorsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SubjectAncestorsEntityService extends AbstractService<SubjectAncestorsEntity> {
 
 	@Autowired

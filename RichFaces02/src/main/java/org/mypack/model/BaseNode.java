@@ -2,6 +2,7 @@ package org.mypack.model;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class BaseNode implements Serializable {
 	private String type;
 	private String name;
