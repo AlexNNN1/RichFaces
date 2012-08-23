@@ -21,9 +21,11 @@ public class SubjectForTreeSelectTest extends AbstractTransactionalJUnit4SpringC
 	public void testTreeSelect(){
 		List<SubjectInGroupEntity> values = subjectInGroups.getForTreeFiller(5);
 	//	System.out.println("test list size=" + values.size());
-		//for (SubjectInGroupEntity entity : values) {
-		//	System.out.println(entity.getItem().getName());
-		//}
+		for (SubjectInGroupEntity entity : values) {
+			System.out.println(entity.getItem().getName());
+			System.out.print(entity.getItem().getId());
+			System.out.println(entity.getGroup());
+		}
 		assertTrue(values.size() > 1);
 	}
 }

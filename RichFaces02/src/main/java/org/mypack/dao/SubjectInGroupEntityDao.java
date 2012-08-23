@@ -34,7 +34,7 @@ public class SubjectInGroupEntityDao extends AbstractDao<SubjectInGroupEntity> {
 	public List<SubjectInGroupEntity> getForTreeFiller(final Integer rootId) {
 		return getHibernateTemplate().find(
 				"FROM SubjectInGroupEntity s WHERE exists " +
-				"(FROM SubjectAncestorsEntity a WHERE " +
+				"(FROM SubjectInGroupEntity a WHERE " +
 				"(s.item.id = a.item.id AND a.group.id = ?) OR (a.item.id = ?))",
 				rootId, rootId);
 	}

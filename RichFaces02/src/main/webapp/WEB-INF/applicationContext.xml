@@ -18,10 +18,11 @@
 	   http://www.springframework.org/schema/aop 
        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-    <aop:aspectj-autoproxy />
-	<mvc:annotation-driven />
+<!--     <aop:aspectj-autoproxy />
+	<mvc:annotation-driven /> -->
     <context:component-scan base-package="org.mypack.dao,org.mypack.services,org.mypack.model,org.mypack.controllers"/>
-
+	<context:annotation-config /> 
+    
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
