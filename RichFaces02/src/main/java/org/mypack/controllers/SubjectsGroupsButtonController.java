@@ -49,8 +49,35 @@ public class SubjectsGroupsButtonController implements Serializable {
 		this.pasteButton = pasteButton;
 	}
 
+	
+	public Boolean getToolBarVisible() {
+		return toolBarVisible;
+	}
+
+	public void setToolBarVisible(Boolean toolBarVisible) {
+		this.toolBarVisible = toolBarVisible;
+	}
+	
+	public void newButtonExecute() {
+		System.out.println("newButtonExecure");
+	}
+	
+	public String getNewButtonExecute() {
+		System.out.println("newButtonExecure");
+		return newButtonExecute;
+	}
+
+	public void setNewButtonExecute(String newButtonExecute) {
+		this.newButtonExecute = newButtonExecute;
+		System.out.println("newButtonExecure");
+	}
+
+
+
+	public Boolean toolBarVisible;
 	private BaseActionButton newButton;
 	private BaseActionButton editButton;
 	private BaseActionButton cutButton;
 	private BaseActionButton pasteButton;
+	private  String newButtonExecute;
 }

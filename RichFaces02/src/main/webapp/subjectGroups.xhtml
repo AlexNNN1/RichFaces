@@ -6,38 +6,42 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a4j="http://richfaces.org/a4j">
 
-	<h:panelGrid rows="2" width="100%" height="200px" border="1"
-		rowClasses="subjects-tree, subjects-buttons-panel">
-		<h:form>
+	<h:panelGrid id="maingrig" rows="2" width="100%" height="200px"
+		border="1" rowClasses="subjects-tree, subjects-buttons-panel">
+		<h:form id="treeform">
 			<rich:tree id="tree" nodeType="#{node.type}" var="node"
-				reRender="newButton" value="#{subjectsTreeController.nodes}"
-				toggleType="client" selectionType="ajax"
+				reRender="testLabel" value="#{subjectsTreeController.nodes}"
+				toggleType="client"
 				selectionChangeListener="#{subjectsTreeController.selectionChanged}">
 				<!-- componentState="#{treeBean.dataState}"
 				toggleListener="#{treeBean.toggleNodeListener}" -->
+				<f:ajax event="selectionchange" render=":form2:buttonpanel" />
 				<rich:treeNode type="subject" expanded="#{node.expanded}">
     	         	#{node.name}
     	         </rich:treeNode>
 			</rich:tree>
 		</h:form>
-		<h:panelGrid>
-			<a4j:outputPanel ajaxRendered="true" layout="block"
-				rendered="#{subjectsTreeController.currentSelection!=null}">
-				<rich:toolbar>
+		<h:form id="form2">
+			<h:panelGrid id="buttonpanel">
+
+				<h:outputText id="testLabel"
+					value="selected: #{subjectsTreeController.currentSelection}" />
+				<rich:toolbar ajaxRendered="true"
+					rendered="#{subjectsGroupsButtonController.toolBarVisible}">
 					<rich:toolbarGroup location="left">
-						<a4j:commandButton id="newButton" value="New" action="home"
-							disabled="#{subjectsGroupsButtonController.newButton.disabled}"></a4j:commandButton>
-						<a4j:commandButton value="Edit" action="home"
-							disabled="#{subjectsGroupsButtonController.editButton.disabled}"></a4j:commandButton>
-						<a4j:commandButton value="Cut" action="home"
-							disabled="#{subjectsGroupsButtonController.cutButton.disabled}"></a4j:commandButton>
-						<a4j:commandButton value="Paste" action="home"
-							disabled="#{subjectsGroupsButtonController.pasteButton.disabled}"></a4j:commandButton>
+						<a4j:commandButton id="submitButton" value="New"
+							action="#{subjectsGroupsButtonController.newButtonExecute}"
+							oncomplete="return false" />
+
 					</rich:toolbarGroup>
 				</rich:toolbar>
-			</a4j:outputPanel>
-			<h:inputText value=""></h:inputText>
-			<h:commandButton value="Save" action="home"></h:commandButton>
-		</h:panelGrid>
+
+				<rich:panel id="newgrouppanel" header="Save New Value">
+					<h:inputText value=""></h:inputText>
+					<h:commandButton value="Save"
+						action="#{subjectsGroupsButtonController.newButtonExecute}"></h:commandButton>
+				</rich:panel>
+			</h:panelGrid>
+		</h:form>
 	</h:panelGrid>
 </ui:composition>

@@ -2,70 +2,31 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:s="http://jboss.com/products/seam/taglib"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:rich="http://richfaces.org/rich"
-                xmlns:a="http://richfaces.org/a4j">
- 	<h:head>
-   	 	<title>JSF 2.0 Hello World</title>
-    </h:head>
-    <h:body>
-    	<h:outputStylesheet library="css" name="styles.css"/>
-        <h:panelGrid columns="2" width="100%" border="1" style="height: 400px"
-                     columnClasses="main-group-column, main-contacts-list-column">
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j">
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<h:panelGrid columns="3" width="100%" border="1" style="height: 400px"
+		columnClasses="main-group-column, main-contacts-list-column">
 
-            <a:outputPanel id="contactsGroups">
-                 <ui:include src="subjectGroups.xhtml"/> 
-            </a:outputPanel>
+		<a:outputPanel id="contactsGroups">
+			<ui:include src="subjectGroups.xhtml" />
+		</a:outputPanel>
 
-            <a:outputPanel id="contactsList">
-               <h:form xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:s="http://jboss.com/products/seam/taglib"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:rich="http://richfaces.org/rich"
-                xmlns:a="http://richfaces.org/a4j">
-        <rich:dataTable id="subjectTable" rows="20" style="width: 500px"
-                        value="#{subjectListController.subjects}" var="subject">
-            <f:facet name="header">
-                <rich:columnGroup>
-                    <rich:column colspan="3">
-                        <h:outputText value="Все элементы" rendered="#{subjectListController.groupFilter==null}"/>
-                        <h:outputText value="Элементы в группе: #{subjectListController.groupFilter.name}"
-                        style="color: #{red};margin-left: 5px;"
-                        rendered="#{subjectListController.groupFilter!=null}"/>
-                    </rich:column>
-                    <rich:column breakRowBefore="true">
-                        <h:outputText value="Имя"/>
-                    </rich:column>
-                    <rich:column>
-                        <h:outputText value="Код"/>
-                    </rich:column>
-                    <rich:column>
-    					  <h:outputText value="2"/>
-                    </rich:column>
-                </rich:columnGroup>
-            </f:facet>
+		<a:outputPanel id="contactsList">
+		</a:outputPanel>
 
-            <rich:column width="45%" sortBy="#{subject.name}" filterBy="#{subject.name}">
-                <h:outputText value="#{subject.name}"/>
-            </rich:column>
-            <rich:column width="45%" sortBy="#{subject.id}" filterBy="#{subject.id}">
-                <h:outputText value="#{subject.id}"/>
-            </rich:column>
-            <rich:column width="10%" style="text-align: center">
-                <a:commandButton image="view.png" ajaxSingle="true" reRender="contactDetail">
-                </a:commandButton>
-            </rich:column>
-        </rich:dataTable>
-</h:form>
+		<a:outputPanel id="detailGroup">
+			<ui:include src="hello.xhtml" />
+		</a:outputPanel>
+	</h:panelGrid>
 
-            </a:outputPanel>
-            
-        </h:panelGrid>
-    
-        </h:body>
+</h:body>
 </html>

@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class BaseActionButton implements Serializable {
 	private Boolean disabled = true;
 
-	public void Action(){
+	public void action(){
 		
 	}
 	

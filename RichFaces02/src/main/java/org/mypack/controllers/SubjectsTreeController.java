@@ -70,8 +70,6 @@ public class SubjectsTreeController implements Serializable {
 	public void setSubjectInGroups(SubjectInGroupEntityService subjectInGroups) {
 		this.subjectInGroups = subjectInGroups;
 	}
-	
-	
 
 	public SubjectsGroupsButtonController getButtons() {
 		return buttons;
@@ -86,14 +84,15 @@ public class SubjectsTreeController implements Serializable {
 			buttons.getNewButton().setDisabled(false);
 			buttons.getEditButton().setDisabled(false);
 			buttons.getCutButton().setDisabled(false);
-		}
+			buttons.setToolBarVisible(true);
+		} else
+			buttons.setToolBarVisible(false);
 	}
-	
+
 	private void loadTreeNodes() {
 
 		nodes.clear();
 		List<SubjectInGroupEntity> list = subjectInGroups.getForTreeFiller(5);
-		System.out.println("list " + list.size());
 		for (SubjectInGroupEntity node : list) {
 			if (node.getGroup() == null || node.getGroup().getId() == 0) {
 				SubjectTreeNode item = new SubjectTreeNode();
@@ -107,19 +106,12 @@ public class SubjectsTreeController implements Serializable {
 
 	private void fillSubNodes(List<SubjectInGroupEntity> list,
 			SubjectInGroupEntity parentNode, SubjectTreeNode parentItem) {
-		// System.out.println("parent node id " + parentNode.getItem().getId());
 		for (SubjectInGroupEntity node : list) {
 			if (node.getGroup() != null) {
-				// System.out.println("node groupid " +
-				// node.getGroup().getId());
-
 				if (node.getGroup().getId() == parentNode.getItem().getId()) {
 					SubjectTreeNode item = new SubjectTreeNode();
 					item.setSubject(node.getItem());
 					parentItem.getChilds().add(item);
-					System.out.println("In parent "
-							+ parentItem.getSubject().getId() + " add child "
-							+ item.getSubject().getId());
 					fillSubNodes(list, node, item);
 				}
 			}
