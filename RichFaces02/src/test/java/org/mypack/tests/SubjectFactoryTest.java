@@ -19,7 +19,7 @@ public class SubjectFactoryTest extends AbstractTransactionalJUnit4SpringContext
 	
 	@Test
 	public void testSubjectAdd() {
-		SubjectEntity root = factory.createSubject("root", 0);
+		SubjectEntity root = factory.createSubject("root", 56);
 		assertNotNull(root);
 		SubjectEntity child = factory.createSubject("child", root.getId());
 		assertNotNull(child);

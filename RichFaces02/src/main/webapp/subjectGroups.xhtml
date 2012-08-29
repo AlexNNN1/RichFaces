@@ -1,47 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a4j="http://richfaces.org/a4j">
-
-	<h:panelGrid id="maingrig" rows="2" width="100%" height="200px"
-		border="1" rowClasses="subjects-tree, subjects-buttons-panel">
-		<h:form id="treeform">
+<h:body>
+	<h:form id="treeform">
+		<h:panelGrid id="maingrig" rows="2" width="100%" height="200px"
+			border="1" rowClasses="subjects-tree, subjects-buttons-panel">
 			<rich:tree id="tree" nodeType="#{node.type}" var="node"
 				reRender="testLabel" value="#{subjectsTreeController.nodes}"
 				toggleType="client"
 				selectionChangeListener="#{subjectsTreeController.selectionChanged}">
 				<!-- componentState="#{treeBean.dataState}"
 				toggleListener="#{treeBean.toggleNodeListener}" -->
-				<f:ajax event="selectionchange" render=":form2:buttonpanel" />
+				<f:ajax event="selectionchange" render=":treeform:buttonpanel" />
 				<rich:treeNode type="subject" expanded="#{node.expanded}">
     	         	#{node.name}
     	         </rich:treeNode>
 			</rich:tree>
-		</h:form>
-		<h:form id="form2">
+
 			<h:panelGrid id="buttonpanel">
-
-				<h:outputText id="testLabel"
-					value="selected: #{subjectsTreeController.currentSelection}" />
-				<rich:toolbar ajaxRendered="true"
-					rendered="#{subjectsGroupsButtonController.toolBarVisible}">
-					<rich:toolbarGroup location="left">
-						<a4j:commandButton id="submitButton" value="New"
+				<h:outputText id="testLabel" value="selected: #{subjectsTreeController.currentSelection}" />
+				<rich:toolbar style="margin-right: 1px; margin-left: 1px;">
+					<rich:toolbarGroup location="left" itemSeparator="Line">
+						<h:commandButton value="Новый"
 							action="#{subjectsGroupsButtonController.newButtonExecute}"
-							oncomplete="return false" />
-
+							disabled="#{subjectsGroupsButtonController.newButton.disabled}"></h:commandButton>
+						<h:commandButton value="Ред." action="#{helloBean.buttonAction}"
+							disabled="#{subjectsGroupsButtonController.editButton.disabled}"></h:commandButton>
+						<h:commandButton value="Cut" action="#{helloBean.buttonAction}"
+							disabled="#{subjectsGroupsButtonController.cutButton.disabled}"></h:commandButton>
+						<h:commandButton value="Paste" action="#{helloBean.buttonAction}"
+							disabled="#{subjectsGroupsButtonController.pasteButton.disabled}"></h:commandButton>
 					</rich:toolbarGroup>
 				</rich:toolbar>
-
-				<rich:panel id="newgrouppanel" header="Save New Value">
-					<h:inputText value=""></h:inputText>
-					<h:commandButton value="Save"
-						action="#{subjectsGroupsButtonController.newButtonExecute}"></h:commandButton>
+				<rich:panel id="newgrouppanel" header="Имя новой группы:"
+				 rendered="#{subjectsGroupsButtonController.showNewGroupPanel}">
+					<h:inputText value="#{subjectsGroupsButtonController.groupName}"></h:inputText>
+					<div>
+						<h:commandButton value="Сохранить"
+							action="#{subjectsGroupsButtonController.SaveNewButtonExecute}"></h:commandButton>
+					</div>
 				</rich:panel>
 			</h:panelGrid>
-		</h:form>
-	</h:panelGrid>
-</ui:composition>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

@@ -15,24 +15,24 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
 @Scope("singleton")
 public class SubjectsFactory {
-	
+
 	@Autowired
 	private SubjectEntityDao subjects;
 	@Autowired
 	private SubjectInGroupEntityDao subjectsInGroups;
 	@Autowired
 	private SubjectAncestorsEntityDao subjectsAncestors;
-	
+
 	@Transactional
 	public SubjectEntity createSubject(String name, Integer groupId) {
 		return addSubject(name, Constants.subjectLeave, groupId);
 	}
-	
-	private SubjectEntity addSubject(String name, Integer levelId, Integer groupId) {
+
+	private SubjectEntity addSubject(String name, Integer levelId,
+			Integer groupId) {
 		SubjectEntity subject = createSubjectEntity(name, levelId);
 		subjects.saveOrUpdate(subject);
 		addSubjectInGroups(subject, groupId);
@@ -64,13 +64,16 @@ public class SubjectsFactory {
 	}
 
 	private void createAncestorsChain(SubjectEntity parent, SubjectEntity child) {
-		List<SubjectInGroupEntity> ancestors = createAncestorsList(child.getId());
+		List<SubjectInGroupEntity> ancestors = createAncestorsList(child
+				.getId());
 		for (SubjectInGroupEntity ancestor : ancestors) {
-			SubjectAncestorsEntity rec = new SubjectAncestorsEntity();
-			rec.setGroup(ancestor.getGroup());
-			rec.setItem(ancestor.getItem());
-			rec.setLevelId(Constants.subjectLink);
-			subjectsAncestors.saveOrUpdate(rec);
+			if (ancestor.getGroup() != null) {
+				SubjectAncestorsEntity rec = new SubjectAncestorsEntity();
+				rec.setGroup(ancestor.getGroup());
+				rec.setItem(ancestor.getItem());
+				rec.setLevelId(Constants.subjectLink);
+				subjectsAncestors.saveOrUpdate(rec);
+			}
 		}
 	}
 
@@ -112,5 +115,5 @@ public class SubjectsFactory {
 			}
 		}
 	}
-	
+
 }
