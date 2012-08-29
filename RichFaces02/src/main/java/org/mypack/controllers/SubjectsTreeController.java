@@ -8,8 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
 
+import org.mypack.model.SubjectEntity;
 import org.mypack.model.SubjectInGroupEntity;
 import org.mypack.model.dto.SubjectTreeNode;
 import org.mypack.services.SubjectInGroupEntityService;
@@ -28,11 +28,13 @@ public class SubjectsTreeController implements Serializable {
 
 	@ManagedProperty(value = "#{subjectsGroupsButtonController}")
 	private SubjectsGroupsButtonController buttons;
+	
 
 	@PostConstruct
 	public void init() {
 		loadTreeNodes();
 	}
+	
 
 	public void selectionChanged(TreeSelectionChangeEvent selectionChangeEvent) {
 		List<Object> selection = new ArrayList<Object>(
@@ -84,9 +86,9 @@ public class SubjectsTreeController implements Serializable {
 			buttons.getNewButton().setDisabled(false);
 			buttons.getEditButton().setDisabled(false);
 			buttons.getCutButton().setDisabled(false);
-			buttons.setToolBarVisible(true);
-		} else
-			buttons.setToolBarVisible(false);
+			buttons.setShowNewGroupPanel(false);
+			buttons.setSelectedGroupId(currentSelection.getSubject().getId());
+		}
 	}
 
 	private void loadTreeNodes() {
@@ -116,6 +118,44 @@ public class SubjectsTreeController implements Serializable {
 				}
 			}
 		}
+	}
+	
+	private SubjectTreeNode getForId(List<SubjectTreeNode> treeNodes, Integer subjectId){
+		SubjectTreeNode result = null;
+		System.out.println("finding node");
+		
+		for (SubjectTreeNode node : treeNodes) {
+			
+			System.out.println("node " + node);
+			System.out.println("node subject " + node.getSubject());
+			System.out.println("node subject id " + node.getSubject().getId());
+			
+			if (node.getSubject().getId() == subjectId) {
+				System.out.println("finded node " + node);
+				result = node;
+				break;
+			}
+			else
+			{
+				SubjectTreeNode value =getForId(node.getChilds(), subjectId); 
+				if (value != null){
+					result = value;
+					break;
+				}
+				
+			}	
+		
+		}
+		
+		System.out.println("result " + result);
+		return result;
+	}
+	
+	public void addTreeNode(SubjectEntity subject, Integer rootID) {
+		System.out.println("in add tree " + rootID);
+		SubjectTreeNode item = new SubjectTreeNode();
+		item.setSubject(subject);
+		this.getForId(nodes, rootID).getChilds().add(item);
 	}
 
 }
