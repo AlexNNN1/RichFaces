@@ -73,6 +73,7 @@ public class SubjectsGroupsButtonController implements Serializable {
 	}
 
 	public void SaveNewButtonExecute() {
+		this.setShowNewGroupPanel(false);
 		System.out.println(String.format("Сохранено... %s в %d", groupName,
 				selectedGroupId));
 		SubjectEntity subject = subjects.createSubject(groupName,
@@ -89,9 +90,12 @@ public class SubjectsGroupsButtonController implements Serializable {
 		if (tree != null) {
 			System.out.println("tree not null");
 			tree.addTreeNode(subject, selectedGroupId);
-			this.showNewGroupPanel = false;
 		}
 	}
+	
+	public void hideNewButtons(){
+		this.setShowNewGroupPanel(false);
+	}	
 
 	public void setSelectedGroupId(Integer selectedGroupId) {
 		this.selectedGroupId = selectedGroupId;

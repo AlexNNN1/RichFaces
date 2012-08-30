@@ -1,47 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:s="http://jboss.com/products/seam/taglib"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:a="http://richfaces.org/a4j">
-	<rich:dataTable id="subjectTable" rows="20"
-		value="#{subjectListController.subjects}" var="subject">
-		<f:facet name="header">
-			<rich:columnGroup>
-				<rich:column colspan="3">
-					<h:outputText value="Все элементы"
-						rendered="#{subjectListController.groupFilter==null}" />
-					<h:outputText
-						value="Элементы в группе: #{subjectListController.groupFilter.name}"
-						style="color: #{red};margin-left: 5px;"
-						rendered="#{subjectListController.groupFilter!=null}" />
-				</rich:column>
-				<rich:column breakBefore="true">
-					<h:outputText value="Имя" />
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+<h:body>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<h:form id="subject_list_form" style="overflow: auto;">
+		<h:panelGrid id="maingrig" rows="2" width="100%" height="100%"
+			border="1" rowClasses="subjects-tree, subjects-buttons-panel">
+			<rich:extendedDataTable value="#{subjectsListController.items}"
+				var="item">
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="id" />
+					</f:facet>
+					<h:outputText value="#{item.id}" />
 				</rich:column>
 				<rich:column>
-					<h:outputText value="Код" />
+					<f:facet name="header">
+						<h:outputText value="name" />
+					</f:facet>
+					<h:outputText value="#{item.name}" />
 				</rich:column>
-				<rich:column>
-					<h:outputText value="2" />
-				</rich:column>
-			</rich:columnGroup>
-		</f:facet>
-
-		<rich:column width="45%" sortBy="#{subject.name}"
-			filterBy="#{subject.name}">
-			<h:outputText value="#{subject.name}" />
-		</rich:column>
-		<rich:column width="45%" sortBy="#{subject.id}"
-			filterBy="#{subject.id}">
-			<h:outputText value="#{subject.id}" />
-		</rich:column>
-		<rich:column width="10%" style="text-align: center">
-			<a:commandButton image="view.png" ajaxSingle="true"
-				reRender="contactDetail">
-			</a:commandButton>
-		</rich:column>
-	</rich:dataTable>
-</ui:composition>
+			</rich:extendedDataTable>
+			<h:panelGrid id="buttonpanel">
+			</h:panelGrid>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
