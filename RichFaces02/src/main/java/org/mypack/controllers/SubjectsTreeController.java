@@ -28,13 +28,14 @@ public class SubjectsTreeController implements Serializable {
 
 	@ManagedProperty(value = "#{subjectsGroupsButtonController}")
 	private SubjectsGroupsButtonController buttons;
-	
+
+	@ManagedProperty(value = "#{subjectsListController}")
+	private SubjectsListController details;
 
 	@PostConstruct
 	public void init() {
 		loadTreeNodes();
 	}
-	
 
 	public void selectionChanged(TreeSelectionChangeEvent selectionChangeEvent) {
 		List<Object> selection = new ArrayList<Object>(
@@ -44,8 +45,15 @@ public class SubjectsTreeController implements Serializable {
 		Object storedKey = tree.getRowKey();
 		tree.setRowKey(currentSelectionKey);
 		currentSelection = (SubjectTreeNode) tree.getRowData();
-		changeButtonsDisabledOnSelect();
 		tree.setRowKey(storedKey);
+		changeButtonsDisabledOnSelect();
+		loadChildSubjects();
+	}
+
+	public void loadChildSubjects() {
+		if (currentSelection != null && currentSelection.getSubject() != null) {
+			details.loadItems(currentSelection.getSubject().getId());
+		}
 	}
 
 	public List<SubjectTreeNode> getNodes() {
@@ -79,6 +87,14 @@ public class SubjectsTreeController implements Serializable {
 
 	public void setButtons(SubjectsGroupsButtonController buttons) {
 		this.buttons = buttons;
+	}
+
+	public SubjectsListController getDetails() {
+		return details;
+	}
+
+	public void setDetails(SubjectsListController details) {
+		this.details = details;
 	}
 
 	private void changeButtonsDisabledOnSelect() {
@@ -119,38 +135,37 @@ public class SubjectsTreeController implements Serializable {
 			}
 		}
 	}
-	
-	private SubjectTreeNode getForId(List<SubjectTreeNode> treeNodes, Integer subjectId){
+
+	private SubjectTreeNode getForId(List<SubjectTreeNode> treeNodes,
+			Integer subjectId) {
 		SubjectTreeNode result = null;
 		System.out.println("finding node");
-		
+
 		for (SubjectTreeNode node : treeNodes) {
-			
+
 			System.out.println("node " + node);
 			System.out.println("node subject " + node.getSubject());
 			System.out.println("node subject id " + node.getSubject().getId());
-			
+
 			if (node.getSubject().getId() == subjectId) {
 				System.out.println("finded node " + node);
 				result = node;
 				break;
-			}
-			else
-			{
-				SubjectTreeNode value =getForId(node.getChilds(), subjectId); 
-				if (value != null){
+			} else {
+				SubjectTreeNode value = getForId(node.getChilds(), subjectId);
+				if (value != null) {
 					result = value;
 					break;
 				}
-				
-			}	
-		
+
+			}
+
 		}
-		
+
 		System.out.println("result " + result);
 		return result;
 	}
-	
+
 	public void addTreeNode(SubjectEntity subject, Integer rootID) {
 		System.out.println("in add tree " + rootID);
 		SubjectTreeNode item = new SubjectTreeNode();

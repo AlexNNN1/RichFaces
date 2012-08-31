@@ -18,7 +18,7 @@
 				selectionChangeListener="#{subjectsTreeController.selectionChanged}">
 				<!-- componentState="#{treeBean.dataState}"
 				toggleListener="#{treeBean.toggleNodeListener}" -->
-				<f:ajax event="selectionchange" render=":treeform:buttonpanel" />
+				<f:ajax event="selectionchange" render=":treeform:buttonpanel :subject_list_form:subject_grid_detail" />
 				<rich:treeNode type="subject" expanded="#{node.expanded}">
     	         	#{node.name}
     	         </rich:treeNode>
@@ -38,7 +38,30 @@
 							disabled="#{subjectsGroupsButtonController.pasteButton.disabled}"></h:commandButton>
 					</rich:toolbarGroup>
 				</rich:toolbar>
+				
 				<rich:panel id="newgrouppanel" header="Имя новой группы:"
+					rendered="#{subjectsGroupsButtonController.showNewGroupPanel}">
+					<h:inputText value="#{subjectsGroupsButtonController.groupName}"></h:inputText>
+					<div>
+						<h:commandButton value="Сохранить"
+							action="#{subjectsGroupsButtonController.SaveNewButtonExecute}"
+							render=":treeform:tree_groups2 :treeform:newgrouppanel">
+							</h:commandButton>
+					</div>
+				</rich:panel>
+				
+				<rich:panel id="editgrouppanel" header="Имя новой группы:"
+					rendered="#{subjectsGroupsButtonController.showNewGroupPanel}">
+					<h:inputText value="#{subjectsGroupsButtonController.groupName}"></h:inputText>
+					<div>
+						<h:commandButton value="Сохранить"
+							action="#{subjectsGroupsButtonController.SaveNewButtonExecute}"
+							render=":treeform:tree_groups2 :treeform:newgrouppanel">
+							</h:commandButton>
+					</div>
+				</rich:panel>
+				
+				<rich:panel id="viewgrouppanel" header="Имя новой группы:"
 					rendered="#{subjectsGroupsButtonController.showNewGroupPanel}">
 					<h:inputText value="#{subjectsGroupsButtonController.groupName}"></h:inputText>
 					<div>
