@@ -30,6 +30,11 @@ public class SubjectsFactory {
 	public SubjectEntity createSubject(String name, Integer groupId) {
 		return addSubject(name, Constants.subjectLeave, groupId);
 	}
+	
+	@Transactional
+	public void updateSubject(SubjectEntity subj) {
+		subjects.saveOrUpdate(subj);
+	}
 
 	private SubjectEntity addSubject(String name, Integer levelId,
 			Integer groupId) {

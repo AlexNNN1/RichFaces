@@ -10,7 +10,7 @@
 <h:body>
 	<h:outputStylesheet library="css" name="styles.css" />
 	<h:form id="treeform" style="overflow: auto;">
-		<h:panelGrid id="maingrig" rows="2" width="100%" height="100%" 
+		<h:panelGrid id="maingrig" rows="2" width="100%" height="100%"
 			border="1" rowClasses="subjects-tree, subjects-buttons-panel">
 			<rich:tree id="tree_groups2" nodeType="#{node.type}" var="node"
 				reRender="testLabel" value="#{subjectsTreeController.nodes}"
@@ -18,7 +18,8 @@
 				selectionChangeListener="#{subjectsTreeController.selectionChanged}">
 				<!-- componentState="#{treeBean.dataState}"
 				toggleListener="#{treeBean.toggleNodeListener}" -->
-				<f:ajax event="selectionchange" render=":treeform:buttonpanel :subject_list_form:subject_grid_detail" />
+				<f:ajax event="selectionchange"
+					render=":treeform:buttonpanel :subject_list_form:subject_grid_detail" />
 				<rich:treeNode type="subject" expanded="#{node.expanded}">
     	         	#{node.name}
     	         </rich:treeNode>
@@ -27,50 +28,69 @@
 			<h:panelGrid id="buttonpanel">
 				<rich:toolbar style="margin-right: 1px; margin-left: 1px;">
 					<rich:toolbarGroup location="left" itemSeparator="Line">
-						<h:commandButton value="Новый"
-							action="#{subjectsGroupsButtonController.newButtonExecute}"
-							disabled="#{subjectsGroupsButtonController.newButton.disabled}"></h:commandButton>
-						<h:commandButton value="Ред." action="#{helloBean.buttonAction}"
-							disabled="#{subjectsGroupsButtonController.editButton.disabled}"></h:commandButton>
+						<a4j:commandButton value="Новый"
+							render=":treeform:newgrouppanel :treeform:buttonpanel"
+							action="#{subjectsTreeController.newButtonExecute}"
+							disabled="#{subjectsGroupsButtonController.newButton.disabled}">
+					    </a4j:commandButton>
+						<a4j:commandButton value="Ред."
+							render=":treeform:editgrouppanel :treeform:buttonpanel"
+							action="#{subjectsTreeController.editButtonExecute}"
+							disabled="#{subjectsGroupsButtonController.editButton.disabled}">
+						</a4j:commandButton>
 						<h:commandButton value="Cut" action="#{helloBean.buttonAction}"
-							disabled="#{subjectsGroupsButtonController.cutButton.disabled}"></h:commandButton>
+							disabled="#{true}"></h:commandButton>
 						<h:commandButton value="Paste" action="#{helloBean.buttonAction}"
-							disabled="#{subjectsGroupsButtonController.pasteButton.disabled}"></h:commandButton>
+							disabled="#{true}"></h:commandButton>
 					</rich:toolbarGroup>
 				</rich:toolbar>
-				
+
 				<rich:panel id="newgrouppanel" header="Имя новой группы:"
-					rendered="#{subjectsGroupsButtonController.showNewGroupPanel}">
-					<h:inputText value="#{subjectsGroupsButtonController.groupName}"></h:inputText>
+					style="height:80px;"
+					rendered="#{subjectsTreeController.showNewPanel}">
+					<h:inputText value="#{subjectsTreeController.groupName}"></h:inputText>
 					<div>
-						<h:commandButton value="Сохранить"
-							action="#{subjectsGroupsButtonController.SaveNewButtonExecute}"
-							render=":treeform:tree_groups2 :treeform:newgrouppanel">
-							</h:commandButton>
+						<a4j:commandButton value="Сохранить"
+							action="#{subjectsTreeController.SaveNewButtonExecute}"
+							render=":treeform:tree_groups2 :treeform:newgrouppanel :treeform:buttonpanel">
+						</a4j:commandButton>
+						<a4j:commandButton value="Отмена" horisontal-align="right"
+							action="#{subjectsTreeController.CancelButtonExecute}"
+							render=":treeform:tree_groups2 :treeform:newgrouppanel :treeform:buttonpanel">
+						</a4j:commandButton>
 					</div>
 				</rich:panel>
-				
-				<rich:panel id="editgrouppanel" header="Имя новой группы:"
-					rendered="#{subjectsGroupsButtonController.showNewGroupPanel}">
-					<h:inputText value="#{subjectsGroupsButtonController.groupName}"></h:inputText>
+
+				<rich:panel id="editgrouppanel" header="Редактирование группы:"
+					style="height:80px;"
+					rendered="#{subjectsTreeController.showEditPanel}">
+					<h:inputText value="#{subjectsTreeController.groupName}"></h:inputText>
 					<div>
-						<h:commandButton value="Сохранить"
-							action="#{subjectsGroupsButtonController.SaveNewButtonExecute}"
-							render=":treeform:tree_groups2 :treeform:newgrouppanel">
-							</h:commandButton>
+						<a4j:commandButton value="Сохранить"
+							action="#{subjectsTreeController.saveUpdatedButtonExecute}"
+							render=":treeform:tree_groups2 :treeform:editgrouppanel :treeform:buttonpanel">
+						</a4j:commandButton>
+						<a4j:commandButton value="Отмена" style="horisontal-align:right;"
+							action="#{subjectsTreeController.CancelButtonExecute}"
+							render=":treeform:tree_groups2 :treeform:editgrouppanel :treeform:buttonpanel">
+						</a4j:commandButton>
 					</div>
 				</rich:panel>
-				
-				<rich:panel id="viewgrouppanel" header="Имя новой группы:"
-					rendered="#{subjectsGroupsButtonController.showNewGroupPanel}">
-					<h:inputText value="#{subjectsGroupsButtonController.groupName}"></h:inputText>
-					<div>
-						<h:commandButton value="Сохранить"
-							action="#{subjectsGroupsButtonController.SaveNewButtonExecute}"
-							render=":treeform:tree_groups2 :treeform:newgrouppanel">
-							</h:commandButton>
-					</div>
+
+				<rich:panel id="viewgrouppanel" header="Инофрмация о группе:"
+					style="height:80px;"
+					rendered="#{subjectsTreeController.showViewPanel}">
+					<h:panelGrid columns="2" rows="2">
+						<h:outputText value="Имя группы:" padding-top="5px"
+							padding-bottom="5px" />
+						<h:outputText
+							value="#{subjectsTreeController.currentSelection.name}" />
+						<h:outputText value="Код группы:" padding-top="15px" />
+						<h:outputText
+							value="#{subjectsTreeController.currentSelection.id}" />
+					</h:panelGrid>
 				</rich:panel>
+
 			</h:panelGrid>
 		</h:panelGrid>
 	</h:form>

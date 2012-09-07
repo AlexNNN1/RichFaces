@@ -24,7 +24,11 @@ public class SubjectTreeNode implements Serializable, TreeNode {
 	public String getName() {
 		return subject.getName();
 	}
-
+	
+	public Integer getId() {
+		return subject.getId();
+	}
+	
 	public SubjectEntity getSubject() {
 		return subject;
 	}

@@ -8,11 +8,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.mypack.model.SubjectEntity;
 import org.mypack.model.SubjectInGroupEntity;
 import org.mypack.model.dto.SubjectTreeNode;
+import org.mypack.services.SubjectEntityService;
 import org.mypack.services.SubjectInGroupEntityService;
+import org.mypack.services.SubjectsFactory;
 import org.richfaces.component.UITree;
 import org.richfaces.event.TreeSelectionChangeEvent;
 
@@ -32,9 +35,16 @@ public class SubjectsTreeController implements Serializable {
 	@ManagedProperty(value = "#{subjectsListController}")
 	private SubjectsListController details;
 
+	@ManagedProperty(value = "#{subjectsFactory}")
+	private SubjectsFactory subjects;
+	
+	@ManagedProperty(value = "#{subjectEntityService}")
+	private SubjectEntityService subjectService;
+	
 	@PostConstruct
 	public void init() {
-		loadTreeNodes();
+		this.loadTreeNodes();
+		this.setShowViewPanel(true);
 	}
 
 	public void selectionChanged(TreeSelectionChangeEvent selectionChangeEvent) {
@@ -48,6 +58,7 @@ public class SubjectsTreeController implements Serializable {
 		tree.setRowKey(storedKey);
 		changeButtonsDisabledOnSelect();
 		loadChildSubjects();
+		this.setShowViewPanel(true);
 	}
 
 	public void loadChildSubjects() {
@@ -96,6 +107,15 @@ public class SubjectsTreeController implements Serializable {
 	public void setDetails(SubjectsListController details) {
 		this.details = details;
 	}
+	
+
+	public SubjectEntityService getSubjectService() {
+		return subjectService;
+	}
+
+	public void setSubjectService(SubjectEntityService subjectService) {
+		this.subjectService = subjectService;
+	}
 
 	private void changeButtonsDisabledOnSelect() {
 		if (this.currentSelection != null) {
@@ -143,13 +163,17 @@ public class SubjectsTreeController implements Serializable {
 
 		for (SubjectTreeNode node : treeNodes) {
 
+			Integer sID = node.getSubject().getId();
+			System.out.println("subjectId " + subjectId);
+			System.out.println("node subject id " + sID);
 			System.out.println("node " + node);
 			System.out.println("node subject " + node.getSubject());
-			System.out.println("node subject id " + node.getSubject().getId());
 
-			if (node.getSubject().getId() == subjectId) {
-				System.out.println("finded node " + node);
+			if (sID.equals(subjectId)) {
+				System.out.println("finded node!!! "
+						+ node.getSubject().getId());
 				result = node;
+				System.out.println("breaking ");
 				break;
 			} else {
 				SubjectTreeNode value = getForId(node.getChilds(), subjectId);
@@ -157,20 +181,120 @@ public class SubjectsTreeController implements Serializable {
 					result = value;
 					break;
 				}
-
 			}
-
 		}
-
 		System.out.println("result " + result);
 		return result;
 	}
 
 	public void addTreeNode(SubjectEntity subject, Integer rootID) {
-		System.out.println("in add tree " + rootID);
 		SubjectTreeNode item = new SubjectTreeNode();
 		item.setSubject(subject);
-		this.getForId(nodes, rootID).getChilds().add(item);
+		System.out.println("before find !!!!");
+		SubjectTreeNode root = this.getForId(nodes, rootID);
+		System.out.println("rootId = " + rootID);
+		System.out.println("root = " + root);
+		 root.getChilds().add(item);
 	}
+	
+	public Boolean getShowEditPanel() {
+		return showEditPanel;
+	}
+
+	public void setShowEditPanel(Boolean showEditPanel) {
+		this.showEditPanel = showEditPanel;
+		this.showViewPanel = false;
+		this.showNewPanel = false;
+	}
+
+	public Boolean getShowNewPanel() {
+		return showNewPanel;
+	}
+
+	public void setShowNewPanel(Boolean showNewPanel) {
+		this.showNewPanel = showNewPanel;
+		this.showViewPanel = false;
+		this.showEditPanel = false;
+	}
+
+	public Boolean getShowViewPanel() {
+		return showViewPanel;
+	}
+
+	public void setShowViewPanel(Boolean showViewPanel) {
+		this.showViewPanel = showViewPanel;
+		this.showNewPanel = false;
+		this.showEditPanel = false;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+
+	public void newButtonExecute() {
+		setGroupName("");
+		this.setShowNewPanel(true);
+	}
+	
+	public void editButtonExecute() {
+		if (currentSelection != null) {
+			setGroupName(currentSelection.getName());
+			this.setShowEditPanel(true);
+		}	
+	}
+
+
+	public SubjectsFactory getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(SubjectsFactory subjects) {
+		this.subjects = subjects;
+	}
+
+	public void SaveNewButtonExecute() {
+		System.out.println("new buton click");
+		System.out.println(subjects);
+		System.out.println(currentSelection);
+		if (currentSelection != null) {
+			int selectedGroupId = currentSelection.getSubject().getId();
+			System.out.println(String.format("Сохранено... %s в %d", groupName,
+					selectedGroupId));
+			SubjectEntity subject = subjects.createSubject(groupName,
+					selectedGroupId);
+			System.out.println("Субджект " + subject);
+			addTreeNode(subject, selectedGroupId);
+		}
+		this.setShowViewPanel(true);
+	}
+	
+	public void saveUpdatedButtonExecute() {
+		if (currentSelection != null) {
+			SubjectEntity subject = currentSelection.getSubject();
+			
+			subject.setName(getGroupName());
+			subjectService.saveOrUpdate(subject);
+			//updateTreeNode(subject);
+			
+			/*SubjectEntity subj = subjectService.getEntity(subject.getId());
+			subj.setName(getGroupName());
+			subjectService.saveOrUpdate(subj);
+			updateTreeNode(subj);*/
+		}
+		this.setShowViewPanel(true);
+	}
+	
+	public void CancelButtonExecute() {
+		this.setShowViewPanel(true);
+	}
+
+	private String groupName;
+	private Boolean showEditPanel;
+	private Boolean showNewPanel;
+	private Boolean showViewPanel;
 
 }

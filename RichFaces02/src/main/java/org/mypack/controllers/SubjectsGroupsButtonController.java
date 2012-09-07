@@ -25,6 +25,8 @@ public class SubjectsGroupsButtonController implements Serializable {
 		cutButton = new BaseActionButton();
 		pasteButton = new BaseActionButton();
 		showNewGroupPanel = false;
+		showEditGroupPanel = false;
+		showViewGroupPanel= true;
 	}
 
 	public BaseActionButton getNewButton() {
@@ -117,7 +119,27 @@ public class SubjectsGroupsButtonController implements Serializable {
 		this.subjects = subjects;
 	}
 
+	
+	public Boolean getShowEditGroupPanel() {
+		return showEditGroupPanel;
+	}
+
+	public void setShowEditGroupPanel(Boolean showEditGroupPanel) {
+		this.showEditGroupPanel = showEditGroupPanel;
+	}
+
+	public Boolean getShowViewGroupPanel() {
+		return showViewGroupPanel;
+	}
+
+	public void setShowViewGroupPanel(Boolean showViewGroupPanel) {
+		this.showViewGroupPanel = showViewGroupPanel;
+	}
+
+
 	private Boolean showNewGroupPanel;
+	private Boolean showEditGroupPanel;
+	private Boolean showViewGroupPanel;
 	private Integer selectedGroupId;
 	private String groupName;
 	private BaseActionButton newButton;
