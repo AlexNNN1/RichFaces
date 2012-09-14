@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.mypack.helpers.Constants;
 import org.mypack.model.SubjectEntity;
 import org.mypack.model.SubjectInGroupEntity;
 import org.mypack.model.dto.SubjectTreeNode;
@@ -25,7 +26,7 @@ import org.richfaces.event.TreeSelectionChangeEvent;
 public class SubjectsTreeController implements Serializable {
 	private List<SubjectTreeNode> nodes = new ArrayList<SubjectTreeNode>();
 	private SubjectTreeNode currentSelection;
-
+	
 	@ManagedProperty(value = "#{subjectInGroupEntityService}")
 	private SubjectInGroupEntityService subjectInGroups;
 
@@ -63,7 +64,7 @@ public class SubjectsTreeController implements Serializable {
 
 	public void loadChildSubjects() {
 		if (currentSelection != null && currentSelection.getSubject() != null) {
-			details.loadItems(currentSelection.getSubject().getId());
+			details.loadItems(currentSelection.getSubject());
 		}
 	}
 
@@ -130,7 +131,7 @@ public class SubjectsTreeController implements Serializable {
 	private void loadTreeNodes() {
 
 		nodes.clear();
-		List<SubjectInGroupEntity> list = subjectInGroups.getForTreeFiller(5);
+		List<SubjectInGroupEntity> list = subjectInGroups.getForTreeFiller(Constants.localSubjectRootId);
 		for (SubjectInGroupEntity node : list) {
 			if (node.getGroup() == null || node.getGroup().getId() == 0) {
 				SubjectTreeNode item = new SubjectTreeNode();
@@ -262,11 +263,8 @@ public class SubjectsTreeController implements Serializable {
 		System.out.println(currentSelection);
 		if (currentSelection != null) {
 			int selectedGroupId = currentSelection.getSubject().getId();
-			System.out.println(String.format("Сохранено... %s в %d", groupName,
-					selectedGroupId));
 			SubjectEntity subject = subjects.createSubject(groupName,
-					selectedGroupId);
-			System.out.println("Субджект " + subject);
+					selectedGroupId, Constants.subjectGroup);
 			addTreeNode(subject, selectedGroupId);
 		}
 		this.setShowViewPanel(true);
@@ -275,15 +273,8 @@ public class SubjectsTreeController implements Serializable {
 	public void saveUpdatedButtonExecute() {
 		if (currentSelection != null) {
 			SubjectEntity subject = currentSelection.getSubject();
-			
 			subject.setName(getGroupName());
 			subjectService.saveOrUpdate(subject);
-			//updateTreeNode(subject);
-			
-			/*SubjectEntity subj = subjectService.getEntity(subject.getId());
-			subj.setName(getGroupName());
-			subjectService.saveOrUpdate(subj);
-			updateTreeNode(subj);*/
 		}
 		this.setShowViewPanel(true);
 	}

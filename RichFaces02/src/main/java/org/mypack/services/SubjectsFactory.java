@@ -27,8 +27,8 @@ public class SubjectsFactory {
 	private SubjectAncestorsEntityDao subjectsAncestors;
 
 	@Transactional
-	public SubjectEntity createSubject(String name, Integer groupId) {
-		return addSubject(name, Constants.subjectLeave, groupId);
+	public SubjectEntity createSubject(String name, Integer groupId, Integer subjectLevel) {
+		return addSubject(name, subjectLevel, groupId);
 	}
 	
 	@Transactional

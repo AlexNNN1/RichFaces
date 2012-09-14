@@ -2,6 +2,7 @@ package org.mypack.dao;
 
 import java.util.List;
 
+import org.mypack.helpers.Constants;
 import org.mypack.model.SubjectAncestorsEntity;
 import org.mypack.model.SubjectInGroupEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class SubjectInGroupEntityDao extends AbstractDao<SubjectInGroupEntity> {
 	@SuppressWarnings("unchecked")
 	public List<SubjectInGroupEntity> getForTreeFiller(final Integer rootId) {
 		return getHibernateTemplate().find(
-				"FROM SubjectInGroupEntity s WHERE exists " +
+				"FROM SubjectInGroupEntity s WHERE s.item.levelId = ? AND exists " +
 				"(FROM SubjectInGroupEntity a WHERE " +
-				"(s.item.id = a.item.id AND a.group.id = ?) OR (a.item.id = ?))",
-				rootId, rootId);
+				"(s.item.id = a.item.id AND a.group.id = ? ) OR (a.item.id = ?))",
+				Constants.subjectGroup, rootId, rootId);
 	}
 }

@@ -15,11 +15,11 @@ public class SubjectEntityDao extends AbstractDao<SubjectEntity> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<SubjectEntity> getSubjectsInGroup(final Integer groupId) {
+	public List<SubjectEntity> getLeavesInGroup(final Integer groupId) {
 		return getHibernateTemplate().find(
-				"FROM SubjectEntity ent WHERE exists (FROM SubjectInGroupEntity s WHERE exists " +
+				"FROM SubjectEntity ent WHERE ent.levelId = ? AND exists (FROM SubjectInGroupEntity s WHERE exists " +
 				"(FROM SubjectInGroupEntity a WHERE (s.item.id = a.item.id AND a.group.id = ?) AND " +
-				"(s.item.id = ent.id))) AND ent.levelId = ?",
-				groupId, Constants.subjectLeave); //   
+				"(s.item.id = ent.id))) ",
+				 Constants.subjectLeave, groupId);   
 	}
 }

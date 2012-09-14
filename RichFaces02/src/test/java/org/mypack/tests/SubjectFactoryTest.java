@@ -3,6 +3,7 @@ package org.mypack.tests;
 import static org.junit.Assert.assertNotNull;
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.mypack.helpers.Constants;
 import org.mypack.model.SubjectEntity;
 import org.mypack.services.SubjectsFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,9 @@ public class SubjectFactoryTest extends AbstractTransactionalJUnit4SpringContext
 	
 	@Test
 	public void testSubjectAdd() {
-		SubjectEntity root = factory.createSubject("root", 56);
+		SubjectEntity root = factory.createSubject("root", 56, Constants.subjectGroup);
 		assertNotNull(root);
-		SubjectEntity child = factory.createSubject("child", root.getId());
+		SubjectEntity child = factory.createSubject("child", root.getId(), Constants.subjectGroup);
 		assertNotNull(child);
 	}	
 	

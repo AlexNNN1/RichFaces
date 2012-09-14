@@ -15,18 +15,18 @@
 			rowClasses="subjects-tree, subjects-buttons-panel">
 			<rich:extendedDataTable value="#{subjectsListController.items}"
 				var="item" style="height:400px; width:100%;">
-				<f:facet name="noData">
-				 Nothing found
+				<f:facet name="noData" horizontal-align="center">
+				 Нет элементов в группе "#{subjectsListController.groupSubject.name}"
 				 </f:facet>
 				<rich:column>
 					<f:facet name="header">
-						<h:outputText value="id" />
+						<h:outputText value="№" />
 					</f:facet>
 					<h:outputText value="#{item.id}" />
 				</rich:column>
-				<rich:column>
+				<rich:column width="250px">
 					<f:facet name="header">
-						<h:outputText value="name" />
+						<h:outputText value="Название" />
 					</f:facet>
 					<h:outputText value="#{item.name}" />
 				</rich:column>

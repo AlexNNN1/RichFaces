@@ -22,8 +22,8 @@ public class SubjectEntityTest extends AbstractTransactionalJUnit4SpringContextT
 	
 	@Test
 	public void getSubjectsForGroup() {
-		List<SubjectEntity> values = subjects.getSubjectsInGroup(56);
-		assertTrue(values.size() > 5);
+		List<SubjectEntity> values = subjects.getLeavesInGroup(56);
+		assertTrue(values.size() > 4);
 	}
 	
 }

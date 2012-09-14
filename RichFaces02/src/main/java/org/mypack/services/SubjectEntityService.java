@@ -22,7 +22,7 @@ public class SubjectEntityService extends AbstractService<SubjectEntity> {
 	}
 
 	@Transactional
-	public List<SubjectEntity> getSubjectsInGroup(final Integer groupId) {
-		return dao.getSubjectsInGroup(groupId);
+	public List<SubjectEntity> getLeavesInGroup(final Integer groupId) {
+		return dao.getLeavesInGroup(groupId);
 	}
 }

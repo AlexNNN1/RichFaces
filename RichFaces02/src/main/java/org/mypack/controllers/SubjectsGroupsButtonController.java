@@ -76,15 +76,11 @@ public class SubjectsGroupsButtonController implements Serializable {
 
 	public void SaveNewButtonExecute() {
 		this.setShowNewGroupPanel(false);
-		System.out.println(String.format("Сохранено... %s в %d", groupName,
+/*		System.out.println(String.format("Сохранено... %s в %d", groupName,
 				selectedGroupId));
 		SubjectEntity subject = subjects.createSubject(groupName,
 				selectedGroupId);
 
-		/*ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-		SubjectsTreeController tree = (SubjectsTreeController) FacesContext
-				.getCurrentInstance().getApplication().getELResolver()
-				.getValue(elContext, null, "#{subjectsTreeController}");*/
 		FacesContext fc = FacesContext.getCurrentInstance(); 
 		SubjectsTreeController tree = (SubjectsTreeController)
 				fc.getApplication().getVariableResolver().resolveVariable(fc, "subjectsTreeController");  
@@ -92,7 +88,7 @@ public class SubjectsGroupsButtonController implements Serializable {
 		if (tree != null) {
 			System.out.println("tree not null");
 			tree.addTreeNode(subject, selectedGroupId);
-		}
+		}*/
 	}
 	
 	public void hideNewButtons(){

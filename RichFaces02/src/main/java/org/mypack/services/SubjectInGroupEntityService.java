@@ -22,8 +22,6 @@ public class SubjectInGroupEntityService extends AbstractService<SubjectInGroupE
 	
 	@Transactional
 	public List<SubjectInGroupEntity> getForTreeFiller(final Integer rootId) {
-		System.out.println("in getForTreeFiller ");
-		System.out.println(dao);
 		return dao.getForTreeFiller(rootId);
 	}
 }
