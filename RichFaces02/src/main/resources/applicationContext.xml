@@ -42,6 +42,7 @@
         <property name="minIdle" value="1"/>
         <property name="timeBetweenEvictionRunsMillis" value="180000"/>
         <property name="minEvictableIdleTimeMillis" value="180000"/>
+      <!--   <property name="current_session_context_class" value="thread"/> -->
         <!-- <property name="validationQuery" value="SELECT 1 FROM RDB$DATABASE"/> -->
     </bean>
 
