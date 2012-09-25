@@ -11,6 +11,7 @@
 	</http>
  
 	<authentication-manager>
+	    
 	  <authentication-provider>
 	    <user-service>
 		<user name="alex" password="123" authorities="ROLE_USER" />
