@@ -10,8 +10,7 @@
 		<intercept-url pattern="/*" access="ROLE_USER" />
 	</http>
  
-	<authentication-manager>
-	    
+	<authentication-manager>  
 	  <authentication-provider>
 	    <user-service>
 		<user name="alex" password="123" authorities="ROLE_USER" />
