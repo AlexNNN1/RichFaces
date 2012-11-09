@@ -1,0 +1,45 @@
+.subjects_grid {
+	 width: 100%;
+}
+
+.main-group-column {
+    width: 20%;
+    vertical-align: top;
+}
+
+.main-contacts-list-column {
+    width: 80%;
+    vertical-align: top;
+}
+
+.subjectTable {
+	width: 500px;
+}
+
+.main-contact-detail-column {
+    width: 40%;
+    vertical-align: top;
+}
+
+.subjects-tree {
+	vertical-align: top;
+	height: 400px;
+}
+
+.tree_groups {
+	vertical-align: top;
+	height: 350px;
+	color: navy;
+	overflow-y: scroll;
+}
+
+.subjects-buttons-panel {
+	vertical-align: bottom;
+	height: 100%;
+	margin-left: 5px;
+}
+
+.rich-panel-header {
+    color: #FF0000;
+    background: #9999ff repeat scroll 0 0;
+}

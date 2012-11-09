@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j">
+<h:head>
+ 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="-1"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=8"/><!-- This line must be here for the IE 9 compatibility -->
+	<title>JSF 2.0 Hello World</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<h:panelGrid id="subjects_grid" columns="3" border="1" style="height: 500px;"
+		columnClasses="main-group-column, main-contacts-list-column">
+
+		<a:outputPanel id="contactsGroups">
+			<ui:include src="subjectGroups.xhtml" />
+		</a:outputPanel>
+
+		<a:outputPanel id="contactsList">
+			<ui:include src="subjectList.xhtml" />
+		</a:outputPanel>
+
+		<a:outputPanel id="detailGroup">
+			<ui:include src="hello.xhtml" />
+		</a:outputPanel>
+	</h:panelGrid>
+
+</h:body>
+</html>

@@ -6,8 +6,8 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
  
-	<http auto-config="true">
-		<intercept-url pattern="/*" access="ROLE_USER" />
+	<http  auto-config="true" > 
+		<intercept-url pattern="/*" access="ROLE_USER"/> 
 	</http>
  
 	<authentication-manager>
@@ -17,4 +17,5 @@
 	    </user-service>
 	  </authentication-provider>
 	</authentication-manager>
+	
 </beans:beans>
