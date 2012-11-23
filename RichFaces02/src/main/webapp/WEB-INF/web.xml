@@ -67,7 +67,7 @@
     <!-- Welcome page -->
 
     <welcome-file-list>
-        <welcome-file>faces/home.xhtml</welcome-file>
+        <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
 
     <!-- JSF mapping -->
@@ -110,6 +110,8 @@
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 	
     

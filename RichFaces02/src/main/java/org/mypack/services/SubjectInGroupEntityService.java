@@ -1,5 +1,6 @@
 package org.mypack.services;
 
+import java.io.Externalizable;
 import java.util.List;
 
 import org.mypack.dao.AbstractDao;

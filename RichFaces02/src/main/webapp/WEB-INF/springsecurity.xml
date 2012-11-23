@@ -6,8 +6,23 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
  
-	<http  auto-config="true" > 
-		<intercept-url pattern="/*" access="ROLE_USER"/> 
+	<http  auto-config="true" > <!--use-expressions="true"  auto-config="true" -->
+		<form-login    login-page="/login.xhtml"    default-target-url="/home.xhtml"  authentication-failure-url="/loginfail.xhtml"  />
+		<intercept-url pattern="/javax.faces.resource/**"  filters="none"/>
+		<intercept-url pattern="/RichFaces02/javax.faces.resource/**"  filters="none"/>
+		<intercept-url pattern="/rfRes/**"  filters="none"/>
+		<intercept-url pattern="/javax.faces*" filters="none"/>
+		<intercept-url pattern="/javax.faces/**" filters="none"/>
+		<intercept-url pattern="/javax/**" filters="none"/>
+		<intercept-url pattern="/javax.faces.resource*" filters="none"/>
+		<intercept-url pattern="http://richfaces.org/rich/*" filters="none"/>
+		<intercept-url pattern="/a4j/**" filters="none"/>
+		
+		<intercept-url pattern="/javax.faces.resource/**" filters="none" />
+<intercept-url pattern="/rfRes/**" filters="none" />
+		
+		<intercept-url pattern="/login.xhtml*" filters="none"/>
+		<intercept-url pattern="/*" access="ROLE_USER"/>	
 	</http>
  
 	<authentication-manager>
