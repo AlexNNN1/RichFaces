@@ -17,7 +17,7 @@
 </h:head>
 <h:body>
 	<h:outputStylesheet library="css" name="styles.css" />
-	<h:panelGrid id="subjects_grid" columns="3" border="1" style="height: 500px;"
+	<h:panelGrid id="subjects_grid" columns="2" border="1" style="height: 500px;"
 		columnClasses="main-group-column, main-contacts-list-column">
 
 		<a:outputPanel id="contactsGroups">
@@ -26,10 +26,6 @@
 
 		<a:outputPanel id="contactsList">
 			<ui:include src="subjectList.xhtml" />
-		</a:outputPanel>
-
-		<a:outputPanel id="detailGroup">
-			<ui:include src="hello.xhtml" />
 		</a:outputPanel>
 	</h:panelGrid>
 
