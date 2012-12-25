@@ -14,8 +14,8 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-     		/resources/applicationContext.xml,
-      		/resources/springsecurity.xml
+     		classpath:applicationContext.xml,
+      		classpath:springsecurity.xml
         </param-value>
     </context-param>
 

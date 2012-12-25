@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2012-12-21T13:29:56.007">
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\main\java\org\mypack\controllers\LoginBean.java">
+<violation beginline="38" endline="38" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="LoginBean" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="42" endline="42" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="LoginBean" method="doLogin" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+</file>
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\main\java\org\mypack\controllers\SubjectsGroupsButtonController.java">
+<violation beginline="73" endline="73" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsGroupsButtonController" method="newButtonExecute" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="139" endline="139" begincolumn="25" endcolumn="39" rule="UnusedPrivateField" ruleset="Unused Code Rules" package="org.mypack.controllers" class="SubjectsGroupsButtonController" variable="selectedGroupId" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateField" priority="3">
+Avoid unused private fields such as 'selectedGroupId'.
+</violation>
+<violation beginline="139" endline="139" begincolumn="17" endcolumn="40" rule="SingularField" ruleset="Design Rules" package="org.mypack.controllers" class="SubjectsGroupsButtonController" variable="selectedGroupId" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#SingularField" priority="4">
+Perhaps 'selectedGroupId' could be replaced by a local variable.
+</violation>
+</file>
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\main\java\org\mypack\controllers\SubjectsListController.java">
+<violation beginline="97" endline="97" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsListController" method="selectionListener" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+</file>
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\main\java\org\mypack\controllers\SubjectsTreeController.java">
+<violation beginline="150" endline="155" begincolumn="33" endcolumn="33" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="fillSubNodes" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="4">
+These nested if statements could be combined
+</violation>
+<violation beginline="163" endline="163" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="getForId" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="168" endline="168" begincolumn="25" endcolumn="42" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="getForId" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="169" endline="169" begincolumn="25" endcolumn="42" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="getForId" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="170" endline="170" begincolumn="25" endcolumn="42" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="getForId" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="171" endline="171" begincolumn="25" endcolumn="42" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="getForId" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="174" endline="174" begincolumn="33" endcolumn="50" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="getForId" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="177" endline="177" begincolumn="33" endcolumn="50" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="getForId" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="187" endline="187" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="getForId" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="194" endline="194" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="addTreeNode" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="196" endline="196" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="addTreeNode" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="197" endline="197" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="addTreeNode" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="261" endline="261" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="SaveNewButtonExecute" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="262" endline="262" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="SaveNewButtonExecute" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="263" endline="263" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.controllers" class="SubjectsTreeController" method="SaveNewButtonExecute" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+</file>
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\main\java\org\mypack\helpers\Constants.java">
+<violation beginline="4" endline="4" begincolumn="29" endcolumn="54" rule="UnusedModifier" ruleset="Controversial Rules" package="org.mypack.helpers" class="Constants" variable="subjectLeave" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnusedModifier" priority="5">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="5" endline="5" begincolumn="29" endcolumn="54" rule="UnusedModifier" ruleset="Controversial Rules" package="org.mypack.helpers" class="Constants" variable="subjectGroup" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnusedModifier" priority="5">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="6" endline="6" begincolumn="29" endcolumn="53" rule="UnusedModifier" ruleset="Controversial Rules" package="org.mypack.helpers" class="Constants" variable="subjectLink" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnusedModifier" priority="5">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="7" endline="7" begincolumn="29" endcolumn="55" rule="UnusedModifier" ruleset="Controversial Rules" package="org.mypack.helpers" class="Constants" variable="subjectEnabled" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnusedModifier" priority="5">
+Avoid modifiers which are implied by the context
+</violation>
+<violation beginline="8" endline="8" begincolumn="29" endcolumn="55" rule="UnusedModifier" ruleset="Controversial Rules" package="org.mypack.helpers" class="Constants" variable="subjectDisabled" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UnusedModifier" priority="5">
+Avoid modifiers which are implied by the context
+</violation>
+</file>
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\main\java\org\mypack\model\HelloBean.java">
+<violation beginline="24" endline="24" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.model" class="HelloBean" method="buttonAction" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+</file>
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\main\java\org\mypack\model\TreeBean.java">
+<violation beginline="30" endline="30" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.model" class="TreeBean" method="init" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="57" endline="57" begincolumn="15" endcolumn="32" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.model" class="TreeBean" method="toggleNodeListener" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+</file>
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\main\java\org\mypack\services\SubjectsFactory.java">
+<violation beginline="71" endline="83" begincolumn="17" endcolumn="9" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="org.mypack.services" class="SubjectsFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'parent'.
+</violation>
+<violation beginline="89" endline="89" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.services" class="SubjectsFactory" method="createAncestorsList" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="103" endline="122" begincolumn="17" endcolumn="9" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="org.mypack.services" class="SubjectsFactory" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'subjectId'.
+</violation>
+<violation beginline="107" endline="107" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.services" class="SubjectsFactory" method="getSubjectAncestors" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="109" endline="109" begincolumn="25" endcolumn="42" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.services" class="SubjectsFactory" method="getSubjectAncestors" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+</file>
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\main\java\org\mypack\services\UserDetailsServiceImpl.java">
+<violation beginline="28" endline="28" begincolumn="17" endcolumn="37" rule="LooseCoupling" ruleset="Coupling Rules" package="org.mypack.services" class="UserDetailsServiceImpl" externalInfoUrl="http://pmd.sourceforge.net/rules/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'HashMap'; use the interface instead
+</violation>
+</file>
+<file name="C:\Users\alex\git\RichFaces\RichFaces02\src\test\java\org\mypack\tests\SubjectForTreeSelectTest.java">
+<violation beginline="25" endline="25" begincolumn="25" endcolumn="42" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.tests" class="SubjectForTreeSelectTest" method="testTreeSelect" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="26" endline="26" begincolumn="25" endcolumn="40" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.tests" class="SubjectForTreeSelectTest" method="testTreeSelect" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+<violation beginline="27" endline="27" begincolumn="25" endcolumn="42" rule="SystemPrintln" ruleset="Java Logging Rules" package="org.mypack.tests" class="SubjectForTreeSelectTest" method="testTreeSelect" externalInfoUrl="http://pmd.sourceforge.net/rules/logging-java.html#SystemPrintln" priority="3">
+System.out.print is used
+</violation>
+</file>
+</pmd>

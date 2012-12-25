@@ -237,7 +237,6 @@ public class SubjectsTreeController implements Serializable {
 	}
 
 	public void newButtonExecute() {
-		setGroupName("");
 		this.setShowNewPanel(true);
 	}
 	
