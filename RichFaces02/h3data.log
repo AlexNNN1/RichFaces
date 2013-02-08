@@ -1,4 +1,0 @@
-2013-02-08 17:24:57  INFO org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean - Building new Hibernate SessionFactory
-2013-02-08 17:24:58  INFO org.springframework.orm.hibernate3.HibernateTransactionManager - Using DataSource [org.apache.commons.dbcp.BasicDataSource@15cf2be] of Hibernate SessionFactory for HibernateTransactionManager
-2013-02-08 17:24:58  INFO org.springframework.security.web.access.intercept.FilterSecurityInterceptor - Validated configuration attributes
-2013-02-08 17:24:58  INFO org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1549 ms

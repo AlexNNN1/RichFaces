@@ -58,12 +58,14 @@ public class SubjectsTreeController implements Serializable {
 		currentSelection = (SubjectTreeNode) tree.getRowData();
 		tree.setRowKey(storedKey);
 		changeButtonsDisabledOnSelect();
+		
 		loadChildSubjects();
 		this.setShowViewPanel(true);
 	}
 
 	public void loadChildSubjects() {
 		if (currentSelection != null && currentSelection.getSubject() != null) {
+			details.switchToViewPanel();
 			details.loadItems(currentSelection.getSubject());
 		}
 	}
@@ -237,7 +239,6 @@ public class SubjectsTreeController implements Serializable {
 	}
 
 	public void newButtonExecute() {
-		setGroupName("");
 		this.setShowNewPanel(true);
 	}
 	
