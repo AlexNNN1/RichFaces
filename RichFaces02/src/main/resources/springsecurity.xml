@@ -17,10 +17,8 @@
 		<intercept-url pattern="/javax.faces.resource*" filters="none"/>
 		<intercept-url pattern="http://richfaces.org/rich/*" filters="none"/>
 		<intercept-url pattern="/a4j/**" filters="none"/>
-		
 		<intercept-url pattern="/javax.faces.resource/**" filters="none" />
-<intercept-url pattern="/rfRes/**" filters="none" />
-		
+		<intercept-url pattern="/rfRes/**" filters="none" />
 		<intercept-url pattern="/login.xhtml*" filters="none"/>
 		<intercept-url pattern="/*" access="ROLE_USER"/>	
 	</http>

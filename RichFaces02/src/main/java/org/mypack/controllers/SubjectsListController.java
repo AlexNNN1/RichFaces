@@ -11,33 +11,40 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.mypack.helpers.Constants;
 import org.mypack.model.SubjectEntity;
-import org.mypack.model.dto.SubjectTreeNode;
 import org.mypack.services.SubjectEntityService;
+import org.mypack.services.SubjectsFactory;
 import org.richfaces.component.UIExtendedDataTable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @SessionScoped
 public class SubjectsListController implements Serializable {
-	private String selectionMode = "single";  
+	private String selectionMode = "single";
 	private Collection<Object> selection;
 	private List<SubjectEntity> items = new ArrayList<SubjectEntity>();
 	private List<SubjectEntity> selectedItems = new ArrayList<SubjectEntity>();
 	private SubjectEntity groupFilter = null;
 	private SubjectEntity groupSubject;
-	
+	protected final Logger log = LoggerFactory.getLogger(getClass());
 	private SubjectEntity currentSelection;
-	
+	private UIExtendedDataTable table_;
+
 	@ManagedProperty(value = "#{subjectEntityService}")
 	private SubjectEntityService subjects;
-	
+
+	@ManagedProperty(value = "#{subjectsFactory}")
+	private SubjectsFactory subjectsFactory;
+
 	@PostConstruct
 	public void init() {
 		showEditPanel = false;
 		showNewPanel = false;
 		showViewPanel = true;
-		
+
 		disableNewButton = false;
 		disableEditButton = true;
 		disableCutButton = true;
@@ -55,17 +62,18 @@ public class SubjectsListController implements Serializable {
 	public SubjectEntity getGroupFilter() {
 		return groupFilter;
 	}
+
 	public void setGroupFilter(SubjectEntity groupFilter) {
 		this.groupFilter = groupFilter;
-	}	
-	
+	}
+
 	public SubjectEntityService getSubjects() {
 		return subjects;
 	}
 
 	public void setSubjects(SubjectEntityService subjects) {
 		this.subjects = subjects;
-	}	
+	}
 
 	public SubjectEntity getGroupSubject() {
 		return groupSubject;
@@ -75,12 +83,14 @@ public class SubjectsListController implements Serializable {
 		this.groupSubject = groupSubject;
 	}
 
-	public void loadItems(SubjectEntity group){
+	public void loadItems(SubjectEntity group) {
+		disableEditButton = true;
 		items.clear();
 		groupSubject = group;
 		items = subjects.getLeavesInGroup(groupSubject.getId());
+
 	}
-	
+
 	public String getSelectionMode() {
 		return selectionMode;
 	}
@@ -106,33 +116,74 @@ public class SubjectsListController implements Serializable {
 	}
 
 	public void selectionListener(AjaxBehaviorEvent event) {
-		UIExtendedDataTable dataTable = (UIExtendedDataTable)event.getComponent();
-		Object originalKey = dataTable.getRowKey();
+		disableEditButton = true;
+		switchToViewPanel();
 		selectedItems.clear();
+		setSelevtedItem(event);
+	}
+
+	private void setSelevtedItem(AjaxBehaviorEvent event) {
+		UIExtendedDataTable dataTable = (UIExtendedDataTable) event
+				.getComponent();
+		table_ = dataTable;
+		Object originalKey = dataTable.getRowKey();
 		for (Object selectionKey : selection) {
 			dataTable.setRowKey(selectionKey);
 			if (dataTable.isRowAvailable()) {
 				selectedItems.add((SubjectEntity) dataTable.getRowData());
 				currentSelection = (SubjectEntity) dataTable.getRowData();
+				disableEditButton = false;
 			}
 		}
 		dataTable.setRowKey(originalKey);
 	}
-	
-	public void newButtonExecute(){
+
+	public void switchToViewPanel() {
+		setShowEditPanel(false);
+		setShowNewPanel(false);
+		setShowViewPanel(true);
+		//currentSelection = null;
+		//selectedItems.clear();
+	}
+
+	public void newButtonExecute() {
+		newItemName = "";
 		setShowEditPanel(false);
 		setShowNewPanel(true);
 		setShowViewPanel(false);
 	}
-	
-	public void cancelButtonExecute(){
-		setShowEditPanel(false);
-		setShowNewPanel(false);
-		setShowViewPanel(true);
+
+	public void cancelButtonExecute() {
+		switchToViewPanel();
 	}
-	
-	public void addButtonExecute(){
-		
+
+	public void addButtonExecute() {
+		int selectedGroupId = groupSubject.getId();
+		SubjectEntity subject = subjectsFactory.createSubject(newItemName,
+				selectedGroupId, Constants.subjectLeave);
+		items.add(subject);
+		selection.clear();
+		selection.add(1);
+		table_.setRowKey(1);
+		selectedItems.add(subject);
+		currentSelection = subject;
+		switchToViewPanel();
+	}
+
+	public void saveOrUpdateExecute() {
+		if (currentSelection != null) {
+			currentSelection.setName(newItemName);
+			subjectsFactory.updateSubject(currentSelection);
+		}
+		switchToViewPanel();
+	}
+
+	public void editButtomExecute() {
+		if (currentSelection != null)
+			newItemName = currentSelection.getName();
+		setShowEditPanel(true);
+		setShowNewPanel(false);
+		setShowViewPanel(false);
 	}
 
 	public SubjectEntity getCurrentSelection() {
@@ -142,7 +193,7 @@ public class SubjectsListController implements Serializable {
 	public void setCurrentSelection(SubjectEntity currentSelection) {
 		this.currentSelection = currentSelection;
 	}
-	
+
 	public Boolean getShowEditPanel() {
 		return showEditPanel;
 	}
@@ -166,7 +217,6 @@ public class SubjectsListController implements Serializable {
 	public void setShowViewPanel(Boolean showViewPanel) {
 		this.showViewPanel = showViewPanel;
 	}
-
 
 	public Boolean getDisableEditButton() {
 		return disableEditButton;
@@ -199,13 +249,21 @@ public class SubjectsListController implements Serializable {
 	public void setDisablePasteButton(Boolean disablePasteButton) {
 		this.disablePasteButton = disablePasteButton;
 	}
-	
+
 	public String getNewItemName() {
 		return newItemName;
 	}
 
 	public void setNewItemName(String newItemName) {
 		this.newItemName = newItemName;
+	}
+
+	public SubjectsFactory getSubjectsFactory() {
+		return subjectsFactory;
+	}
+
+	public void setSubjectsFactory(SubjectsFactory subjectsFactory) {
+		this.subjectsFactory = subjectsFactory;
 	}
 
 	private Boolean showEditPanel;
@@ -217,19 +275,3 @@ public class SubjectsListController implements Serializable {
 	private Boolean disablePasteButton;
 	private String newItemName;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

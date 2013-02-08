@@ -48,8 +48,10 @@
 							action="#{subjectsListController.newButtonExecute}"
 							disabled="#{subjectsListController.disableNewButton}"
 							render="subject_list_form:buttonpanel"/>
-						<a4j:commandButton value="Ред." action="#{helloBean.buttonAction}"
-							disabled="#{subjectsListController.disableEditButton}"/>
+						<a4j:commandButton value="Ред."
+							disabled="#{subjectsListController.disableEditButton}"
+							action="#{subjectsListController.editButtomExecute}"
+							render="subject_list_form:buttonpanel"/>
 						<a4j:commandButton value="Cut" action="#{helloBean.buttonAction}"
 							disabled="#{subjectsListController.disableCutButton}"/>
 						<a4j:commandButton value="Paste" action="#{helloBean.buttonAction}"
@@ -64,7 +66,7 @@
 					<div>
 						<a4j:commandButton value="Сохранить"
 							action="#{subjectsListController.addButtonExecute}"
-							render=":subject_list_form:buttonpanel"/>
+							render=":subject_list_form:buttonpanel :subject_list_form:subject_grid_detail"/>
 						<a4j:commandButton value="Отмена" horisontal-align="right"
 							action="#{subjectsListController.cancelButtonExecute}"
 							render=":subject_list_form:buttonpanel"/>
@@ -74,19 +76,16 @@
 				<rich:panel id="edititempanel" header="Редактирование элемента:"
 					style="height:80px;"
 					rendered="#{subjectsListController.showEditPanel}">
-					<h:inputText value="#{subjectsTreeController.groupName}"></h:inputText>
+					<h:inputText value="#{subjectsListController.newItemName}"></h:inputText>
 					<div>
 						<a4j:commandButton value="Сохранить"
-							action="#{subjectsTreeController.saveUpdatedButtonExecute}"
-							render=":treeform:tree_groups2 :treeform:editgrouppanel :treeform:buttonpanel">
-						</a4j:commandButton>
-						<a4j:commandButton value="Отмена" style="horisontal-align:right;"
-							action="#{subjectsTreeController.CancelButtonExecute}"
-							render=":treeform:tree_groups2 :treeform:editgrouppanel :treeform:buttonpanel">
-						</a4j:commandButton>
+							action="#{subjectsListController.saveOrUpdateExecute}"
+							render=":subject_list_form:buttonpanel :subject_list_form:subject_grid_detail"/>
+						<a4j:commandButton value="Отмена" horisontal-align="right"
+							action="#{subjectsListController.cancelButtonExecute}"
+							render=":subject_list_form:buttonpanel"/>
 					</div>
 				</rich:panel>
-
 
 
 				<rich:panel id="viewitempanel" header="Инофрмация об элементе:"
