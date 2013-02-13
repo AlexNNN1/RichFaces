@@ -10,6 +10,7 @@ public class BaseActionButton implements Serializable {
 		
 	}
 	
+	
 	public Boolean getDisabled() {
 		return disabled;
 	}
